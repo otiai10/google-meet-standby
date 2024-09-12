@@ -2,7 +2,7 @@
 // console.log(chrome.runtime.getManifest());
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-    const platform = (new URL(sender.tab?.url!)).hostname;
+    const platform = (new URL(sender.tab?.url || "")).hostname;
     await chrome.alarms.create(`${platform}/${sender.tab?.id}/join`, { when: message.scheduled });
     sendResponse({ scheduled: message.scheduled });
     return true;

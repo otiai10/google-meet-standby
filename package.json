@@ -4,9 +4,10 @@
   "description": "",
   "main": "background.js",
   "scripts": {
-    "start": "pnpm build && pnpm build:css && tsc -w",
-    "build": "tsc && cp src/manifest.json dist/manifest.json",
-    "build:css": "cp ./src/context/*.css ./dist/context/",
+    "start": "mkdir -p dist && cp src/manifest.json dist/manifest.json && too -c='tsc -w' -c='sass -w ./src/context/:./dist/context/'",
+    "build": "pnpm build:js && pnpm build:css",
+    "build:js": "tsc && cp src/manifest.json dist/manifest.json",
+    "build:css": "sass src/context/:dist/context/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,6 +19,8 @@
   "author": "otiai10",
   "license": "MIT",
   "devDependencies": {
+    "sass": "^1.78.0",
+    "too": "^2.4.0",
     "typescript": "^5.6.2"
   },
   "dependencies": {

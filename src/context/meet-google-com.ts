@@ -28,7 +28,7 @@
         timeinput.remove();
         joinbutton.remove();
         indicator.classList.add('scheduled');
-        indicator.innerText = `Scheduled to join at ${value}\nKeep this page open`;
+        indicator.innerText = `Scheduled to join at ${value}\nYou can leave, but keep this page open`;
         container.style.border = "none";
     };
 
@@ -54,7 +54,6 @@
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
             if (button.textContent == "Join now") return true;
-            if (button.textContent == "Switch here") return true;
             if (button.textContent == "Switch here") return true;
             return false;
         });

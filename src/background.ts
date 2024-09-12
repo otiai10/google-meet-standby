@@ -10,10 +10,13 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
     const [platform, tabId, action] = alarm.name.split('/');
+    chrome.tabs.update(parseInt(tabId), { active: true });
     chrome.scripting.executeScript({
         target: { tabId: parseInt(tabId) },
-        func: (p, t, a) => {
-            window.alert([p, t, a].join('\n'));
-        }, args: [platform, tabId, action],
+        func: (/* p, t, a */) => {
+            const texts = ["Join now", "Switch here"];
+            const [button] = Array.from(document.querySelectorAll('button')).filter(b => texts.includes(b.textContent || ""));
+            if (button) button.click();
+        }, args: [], // [platform, tabId, action],
     });
 });

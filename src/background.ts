@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-    const [platform, tabId, action] = alarm.name.split('/');
+    const [/* platform */, tabId, /* action */] = alarm.name.split('/');
     chrome.tabs.update(parseInt(tabId), { active: true });
     chrome.scripting.executeScript({
         target: { tabId: parseInt(tabId) },

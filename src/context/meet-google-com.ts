@@ -55,6 +55,7 @@
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
             if (button.textContent == "Join now") return true;
             if (button.textContent == "Switch here") return true;
+            if (button.textContent == "Switch here") return true;
             return false;
         });
         const parent = sibling?.parentElement;

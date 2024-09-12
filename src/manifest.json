@@ -1,6 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Standby and Join ON TIME for Google Meet",
+    "description": "For all who are PUNCTUAL. Automatically standby and join on time for Google Meet",
     "version": "1.0.0",
     "permissions": [
         "alarms",
@@ -24,5 +25,9 @@
                 "context/meet-google-com.css"
             ]
         }
-    ]
+    ],
+    "icons": {
+        "48": "img/icon.48.png",
+        "128": "img/icon.128.png"
+    }
 }

@@ -1,19 +1,21 @@
 {
-  "name": "google-meet-join-on-time",
+  "name": "google-meet-standby",
   "version": "1.0.0",
   "description": "",
   "main": "background.js",
   "scripts": {
-    "start": "mkdir -p dist && cp src/manifest.json dist/manifest.json && too -c='tsc -w' -c='sass -w ./src/context/:./dist/context/'",
-    "build": "pnpm build:js && pnpm build:css",
+    "start": "mkdir -p dist && cp src/manifest.json dist/manifest.json && cp -r src/img dist/ && too -c='tsc -w' -c='sass -w ./src/context/:./dist/context/'",
+    "build": "pnpm build:js && pnpm build:css && pnpm build:img",
     "build:js": "tsc && cp src/manifest.json dist/manifest.json",
     "build:css": "sass src/context/:dist/context/",
+    "build:img": "cp -r src/img dist/",
     "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "Google Meet",
     "Automation",
+    "standby",
     "Join on time",
     "now"
   ],

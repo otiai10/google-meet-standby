@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Standby and Join ON TIME for Google Meet",
+    "version": "1.0.0",
+    "permissions": [
+        "alarms",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://meet.google.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://meet.google.com/*"
+            ],
+            "js": [
+                "context/meet-google-com.js"
+            ],
+            "css": [
+                "context/meet-google-com.css"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "google-meet-join-on-time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "start": "pnpm build && pnpm build:css && tsc -w",
+    "build": "tsc && cp src/manifest.json dist/manifest.json",
+    "build:css": "cp ./src/context/*.css ./dist/context/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Google Meet",
+    "Automation",
+    "Join on time",
+    "now"
+  ],
+  "author": "otiai10",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@types/chrome": "^0.0.270"
+  }
+}

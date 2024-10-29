@@ -53,6 +53,7 @@
 
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
+            if (button.textContent == "Ask to join") return true;
             if (button.textContent == "Join now") return true;
             if (button.textContent == "Switch here") return true;
             return false;

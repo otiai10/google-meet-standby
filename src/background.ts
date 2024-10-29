@@ -14,7 +14,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.scripting.executeScript({
         target: { tabId: parseInt(tabId) },
         func: (/* p, t, a */) => {
-            const texts = ["Join now", "Switch here"];
+            const texts = ["Join now", "Switch here", "Ask to join"];
             const [button] = Array.from(document.querySelectorAll('button')).filter(b => texts.includes(b.textContent || ""));
             if (button) button.click();
         }, args: [], // [platform, tabId, action],

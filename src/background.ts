@@ -1,5 +1,10 @@
 
 // console.log(chrome.runtime.getManifest());
+const btnTexts = [
+    chrome.i18n.getMessage('btnJoinNow'),
+    chrome.i18n.getMessage('btnAskToJoin'),
+    chrome.i18n.getMessage('btnSwitchHere'),
+];
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     const platform = (new URL(sender.tab?.url || "")).hostname;
@@ -14,8 +19,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.scripting.executeScript({
         target: { tabId: parseInt(tabId) },
         func: (/* p, t, a */) => {
-            const texts = ["Join now", "Switch here", "Ask to join"];
-            const [button] = Array.from(document.querySelectorAll('button')).filter(b => texts.includes(b.textContent || ""));
+            const [button] = Array.from(document.querySelectorAll('button')).filter(b => btnTexts.includes(b.textContent || ""));
             if (button) button.click();
         }, args: [], // [platform, tabId, action],
     });

@@ -2,6 +2,11 @@
 (async () => {
     const MAX_RETRIES = 1200;
     const RETRY_INTERVAL_MS = 100;
+    const btnTexts = [
+        chrome.i18n.getMessage('btnJoinNow'),
+        chrome.i18n.getMessage('btnAskToJoin'),
+        chrome.i18n.getMessage('btnSwitchHere'),
+    ];
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
     const indicator = document.createElement('div');
@@ -15,7 +20,7 @@
     timeinput.value = now.toTimeString().substring(0, 5);
 
     const joinbutton = document.createElement('button');
-    joinbutton.innerText = 'Join on time';
+    joinbutton.innerText = chrome.i18n.getMessage('btnJoinOnTime');
     joinbutton.onclick = async () => {
         const value = timeinput.value;
         const [h, m] = value.split(':');
@@ -28,7 +33,7 @@
         timeinput.remove();
         joinbutton.remove();
         indicator.classList.add('scheduled');
-        indicator.innerText = `Scheduled to join at ${value}\nYou can leave, but keep this page open`;
+        indicator.innerText = chrome.i18n.getMessage('stayTuned', [value]);
         container.style.border = "none";
     };
 
@@ -49,7 +54,7 @@
 
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
-            return ['Join now', 'Switch here', 'Ask to join'].includes(button.textContent || "");
+            return btnTexts.includes(button.textContent || "");
         });
         sibling?.parentElement?.appendChild(c);
         await sleep(1000);
@@ -73,7 +78,7 @@
     const observer = new MutationObserver((mutationsList) => {
         const mut = mutationsList.find(m => m.target.nodeName === 'DIV');
         const btns = mut ? (mut.target as Element).querySelectorAll('button') : [];
-        const b = Array.from(btns).find(b => b.textContent == "Keep waiting");
+        const b = Array.from(btns).find(b => b.textContent == chrome.i18n.getMessage('btnKeepWaiting'));
         if (b) console.log(`%c${b.textContent}`, 'color:#0B57D0;font-weight:bold;', new Date());
         b?.click();
     });

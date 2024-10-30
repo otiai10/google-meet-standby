@@ -1,10 +1,10 @@
 {
   "name": "google-meet-standby",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "",
   "main": "background.js",
   "scripts": {
-    "start": "mkdir -p dist && cp src/manifest.json dist/manifest.json && cp -r src/img dist/ && too -c='tsc -w' -c='sass -w ./src/context/:./dist/context/'",
+    "start": "mkdir -p dist && cp src/manifest.json dist/manifest.json && cp -r src/img dist/ && cp -r src/_locales dist/ && too -c='tsc -w' -c='sass -w ./src/context/:./dist/context/'",
     "build": "pnpm build:js && pnpm build:css && pnpm build:img",
     "build:js": "tsc && cp src/manifest.json dist/manifest.json",
     "build:css": "sass src/context/:dist/context/",

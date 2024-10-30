@@ -1,0 +1,32 @@
+{
+    "extName": {
+        "message": "「Google Meet」のミーティングに「時間通りに入る」ボタンを表示"
+    },
+    "extDescription": {
+        "message": "GoogleMeetに時間通りに参加するための自動待機機能です. あらかじめこのボタンを押しておけば、時間が来たら自動でGoogleMeetの画面に移動します. ついうっかりGoogleMeetへの参加を忘れちゃうひと向け"
+    },
+    "btnJoinNow": {
+        "message": "今すぐ参加"
+    },
+    "btnAskToJoin": {
+        "message": "参加をリクエスト"
+    },
+    "btnSwitchHere": {
+        "message": "このデバイスに切り替える"
+    },
+    "btnKeepWaiting": {
+        "message": "待機"
+    },
+    "btnJoinOnTime": {
+        "message": "この時間に参加"
+    },
+    "stayTuned": {
+        "message": "予定時刻 $time$ に自動的に参加します\nこのページを離れて作業可能ですが\nこのページは閉じないでください",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10:00"
+            }
+        }
+    }
+}

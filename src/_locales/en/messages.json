@@ -1,0 +1,32 @@
+{
+    "extName": {
+        "message": "Standby and Join ON TIME for Google Meet"
+    },
+    "extDescription": {
+        "message": "For all who are PUNCTUAL. Automatically standby and join on time for Google Meet"
+    },
+    "btnJoinNow": {
+        "message": "Join now"
+    },
+    "btnAskToJoin": {
+        "message": "Ask to join"
+    },
+    "btnSwitchHere": {
+        "message": "Switch here"
+    },
+    "btnKeepWaiting": {
+        "message": "Keep waiting"
+    },
+    "btnJoinOnTime": {
+        "message": "Join on time"
+    },
+    "stayTuned": {
+        "message": "Scheduled to join at $time$\nYou can leave, but keep this page open",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "10:00"
+            }
+        }
+    }
+}

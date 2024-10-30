@@ -5,6 +5,7 @@ clean:
 
 build:
 	pnpm build
+	cp -r src/_locales dist/_locales
 
 release: clean build
 	mkdir -p release	

@@ -80,4 +80,13 @@
         });
     };
 
+    // When the users stay idle for a while, keep the page stand-by
+    // See https://github.com/otiai10/google-meet-standby/issues/1
+    const observer = new MutationObserver(async (mutationsList) => {
+        const mut = mutationsList.find(m => m.target.nodeName === 'DIV');
+        const btns = mut ? (mut.target as Element).querySelectorAll('button') : [];
+        Array.from(btns).find(b => b.textContent == "Keep waiting")?.click();
+    });
+    observer.observe(document.body, { childList: true, subtree: true, attributes: false });
+
 })();

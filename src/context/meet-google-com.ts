@@ -43,29 +43,17 @@
     const retry = setInterval(async () => {
         count++;
         const ok = await render(container);
-        if (ok != null && ok.offsetWidth > 0) {
-            clearInterval(retry);
-        }
-        if (count > MAX_RETRIES) {
-            clearInterval(retry);
-        }
+        if (ok && ok.offsetWidth > 0) clearInterval(retry);
+        if (count > MAX_RETRIES) clearInterval(retry);
     }, 1000);
 
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
-            if (button.textContent == "Ask to join") return true;
-            if (button.textContent == "Join now") return true;
-            if (button.textContent == "Switch here") return true;
-            return false;
+            return ['Join now', 'Switch here', 'Ask to join'].includes(button.textContent || "");
         });
-        const parent = sibling?.parentElement;
-        if (!sibling || !parent) return null;
-        // Insert this container next to sibling
-        // parent.insertBefore(c, sibling);
-        parent.appendChild(c);
-        // document.body.appendChild(container);
+        sibling?.parentElement?.appendChild(c);
         await sleep(1000);
-        return document.querySelector<HTMLDivElement>('#join-on-time-container');
+        return document.querySelector<HTMLDivElement>('#join-on-time-container'); // return c;
     }
 
     const waitUntilElementFound = async <T extends HTMLElement>(selector: string, filter: (e: T) => boolean): Promise<T | null> => {
@@ -82,10 +70,12 @@
 
     // When the users stay idle for a while, keep the page stand-by
     // See https://github.com/otiai10/google-meet-standby/issues/1
-    const observer = new MutationObserver(async (mutationsList) => {
+    const observer = new MutationObserver((mutationsList) => {
         const mut = mutationsList.find(m => m.target.nodeName === 'DIV');
         const btns = mut ? (mut.target as Element).querySelectorAll('button') : [];
-        Array.from(btns).find(b => b.textContent == "Keep waiting")?.click();
+        const b = Array.from(btns).find(b => b.textContent == "Keep waiting");
+        if (b) console.log(`%c${b.textContent}`, 'color:#0B57D0;font-weight:bold;', new Date());
+        b?.click();
     });
     observer.observe(document.body, { childList: true, subtree: true, attributes: false });
 

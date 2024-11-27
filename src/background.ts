@@ -18,9 +18,9 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.tabs.update(parseInt(tabId), { active: true });
     chrome.scripting.executeScript({
         target: { tabId: parseInt(tabId) },
-        func: (/* p, t, a */) => {
-            const [button] = Array.from(document.querySelectorAll('button')).filter(b => btnTexts.includes(b.textContent || ""));
+        func: (bt, /* p, t, a */) => {
+            const [button] = Array.from(document.querySelectorAll('button')).filter(b => bt.includes(b.textContent || ""));
             if (button) button.click();
-        }, args: [], // [platform, tabId, action],
+        }, args: [btnTexts], // [platform, tabId, action],
     });
 });

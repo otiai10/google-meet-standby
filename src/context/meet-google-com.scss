@@ -25,6 +25,9 @@ div#join-on-time-container {
     border: none;
     padding: 12px 16px;
     font-size: 1rem;
+    &[type="time"] {
+      cursor: pointer;
+    }
   }
 
   >button {

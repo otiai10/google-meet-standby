@@ -52,12 +52,17 @@
         if (count > MAX_RETRIES) clearInterval(retry);
     }, 1000);
 
-    const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null> => {
+    const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null | void> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
             return btnTexts.includes(button.textContent || "");
         });
-        sibling?.parentElement?.appendChild(c);
-        await sleep(1000);
+        await sleep(500);
+        const parent = sibling?.parentElement;
+        if (!parent) return console.log('Parent not found');
+        parent.style.display = 'flex';
+        parent.style.flexDirection = 'column';
+        parent.style.alignItems = 'center';
+        parent.appendChild(c);
         return document.querySelector<HTMLDivElement>('#join-on-time-container'); // return c;
     }
 

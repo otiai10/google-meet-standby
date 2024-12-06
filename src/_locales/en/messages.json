@@ -18,7 +18,7 @@
         "message": "Keep waiting"
     },
     "btnJoinOnTime": {
-        "message": "Join on time"
+        "message": "Schedule to join"
     },
     "stayTuned": {
         "message": "Scheduled to join at $time$\nYou can leave, but keep this page open",

@@ -19,7 +19,7 @@ div#join-on-time-container {
     animation: blink 1s steps(2) infinite;
   }
 
-  >input {
+  input {
     flex: 1;
     appearance: none;
     border: none;
@@ -27,6 +27,22 @@ div#join-on-time-container {
     font-size: 1rem;
     &[type="time"] {
       cursor: pointer;
+      position: relative;
+      padding-right: 18px; // Adjust padding to make space for the arrow
+
+      &::after {
+        content: ' ';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        right: 10px; // Position the arrow on the right side
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 4px solid rgba(0, 0, 0, 0.87);
+      }
     }
   }
 

@@ -82,6 +82,8 @@
     // See https://github.com/otiai10/google-meet-standby/issues/1
     const observer = new MutationObserver((mutationsList) => {
         const mut = mutationsList.find(m => m.target.nodeName === 'DIV');
+        const id = (mut?.target as HTMLDivElement)?.id;
+        if (id) console.log(`%c${id}`, 'color:#0B57D0;font-weight:bold;', new Date());
         const btns = mut ? (mut.target as Element).querySelectorAll('button') : [];
         const b = Array.from(btns).find(b => b.textContent == chrome.i18n.getMessage('btnKeepWaiting'));
         if (b) console.log(`%c${b.textContent}`, 'color:#0B57D0;font-weight:bold;', new Date());

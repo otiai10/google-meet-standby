@@ -4,6 +4,7 @@
     const RETRY_INTERVAL_MS = 100;
     const btnTexts = [
         chrome.i18n.getMessage('btnJoinNow'),
+        chrome.i18n.getMessage('btnJoinAnyway'),
         chrome.i18n.getMessage('btnAskToJoin'),
         chrome.i18n.getMessage('btnSwitchHere'),
     ];
@@ -54,10 +55,12 @@
 
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null | void> => {
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
-            return btnTexts.includes(button.textContent || "");
+            return !!button.textContent && btnTexts.includes(button.textContent);
         });
         await sleep(500);
-        const parent = sibling?.parentElement;
+        if (!sibling) return console.log('Sibling not found');
+        console.log(`%cSIBLING FOUND:`, 'color:#0B57D0;font-weight:bold;', sibling.innerText);
+        const parent = sibling.parentElement;
         if (!parent) return console.log('Parent not found');
         parent.style.display = 'flex';
         parent.style.flexDirection = 'column';
@@ -83,10 +86,10 @@
     const observer = new MutationObserver((mutationsList) => {
         const mut = mutationsList.find(m => m.target.nodeName === 'DIV');
         const id = (mut?.target as HTMLDivElement)?.id;
-        if (id) console.log(`%c${id}`, 'color:#0B57D0;font-weight:bold;', new Date());
+        if (id) console.log(`MUTATION: %c${id}`, 'color:#0B57D0;font-weight:bold;', new Date());
         const btns = mut ? (mut.target as Element).querySelectorAll('button') : [];
         const b = Array.from(btns).find(b => b.textContent == chrome.i18n.getMessage('btnKeepWaiting'));
-        if (b) console.log(`%c${b.textContent}`, 'color:#0B57D0;font-weight:bold;', new Date());
+        if (b) console.log(`BUTTON: %c${b.textContent}`, 'color:#0B57D0;font-weight:bold;', new Date());
         b?.click();
     });
     observer.observe(document.body, { childList: true, subtree: true, attributes: false });

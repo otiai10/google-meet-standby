@@ -8,6 +8,9 @@
     "btnJoinNow": {
         "message": "今すぐ参加"
     },
+    "btnJoinAnyway": {
+        "message": "参加"
+    },
     "btnAskToJoin": {
         "message": "参加をリクエスト"
     },

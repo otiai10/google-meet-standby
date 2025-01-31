@@ -8,6 +8,9 @@
     "btnJoinNow": {
         "message": "Join now"
     },
+    "btnJoinAnyway": {
+        "message": "Join anyway"
+    },
     "btnAskToJoin": {
         "message": "Ask to join"
     },

@@ -2,6 +2,7 @@
 // console.log(chrome.runtime.getManifest());
 const btnTexts = [
     chrome.i18n.getMessage('btnJoinNow'),
+    chrome.i18n.getMessage('btnJoinAnyway'),
     chrome.i18n.getMessage('btnAskToJoin'),
     chrome.i18n.getMessage('btnSwitchHere'),
 ];

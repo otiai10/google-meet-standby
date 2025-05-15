@@ -54,12 +54,12 @@
     }, 1000);
 
     const render = async (c: HTMLDivElement): Promise<HTMLDivElement | null | void> => {
+        await sleep(1000);
         const sibling = await waitUntilElementFound<HTMLButtonElement>('button', button => {
             return !!button.textContent && btnTexts.includes(button.textContent);
         });
-        await sleep(500);
         if (!sibling) return console.log('Sibling not found');
-        console.log(`%cSIBLING FOUND:`, 'color:#0B57D0;font-weight:bold;', sibling.innerText);
+        console.log(`%cSIBLING FOUND:`, 'color:#0B57D0;font-weight:bold;', sibling.innerText, sibling.id);
         const parent = sibling.parentElement;
         if (!parent) return console.log('Parent not found');
         parent.style.display = 'flex';
